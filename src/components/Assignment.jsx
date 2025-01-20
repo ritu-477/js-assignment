@@ -9,6 +9,7 @@ const Assignment = () => {
     });
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
@@ -16,6 +17,7 @@ const Assignment = () => {
             [name]: value
         }));
     };
+
     const handleAddUser = (e) => {
         e.preventDefault();
         if (formData.firstName && formData.lastName && formData.email) {
@@ -23,15 +25,13 @@ const Assignment = () => {
             setFormData({ firstName: "", lastName: "", email: "" });
         }
     };
+
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
 
     const filterUsers = users.filter((user) =>
-        Object.values(user)
-            .join(" ")
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+        user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) || user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) || user.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -43,31 +43,13 @@ const Assignment = () => {
                     className="flex flex-col justify-center items-center max-w-[400px] w-full mx-auto"
                 >
                     <input
-                        value={formData.firstName} onChange={handleChange} required className="outline-none p-2 mt-3 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto" type="text"
-                        placeholder="First Name"
-                        name="firstName"
+                        value={formData.firstName} onChange={handleChange} required className="outline-none p-2 mt-3 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto" type="text" placeholder="First Name" name="firstName"
                     />
-                    <input
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                        className="outline-none p-2 mt-3 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto"
-                        type="text"
-                        placeholder="Last Name"
-                        name="lastName" />
-                    <input
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="outline-none p-2 mt-3 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto"
-                        type="email"
-                        placeholder="Email"
-                        name="email" />
-                    <button
-                        type="submit"
-                        className="bg-blue-400 mt-3 px-4 py-2 rounded-lg text-white">
-                        Add
-                    </button>
+                    <input value={formData.lastName} onChange={handleChange} required className="outline-none p-2 mt-3 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto" type="text" placeholder="Last Name" name="lastName"
+                    />
+                    <input value={formData.email} onChange={handleChange} required className="outline-none p-2 mt-3 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto" type="email" placeholder="Email" name="email"
+                    />
+                    <button type="submit" className="bg-blue-400 mt-3 px-4 py-2 rounded-lg text-white">Add</button>
                 </form>
                 <div className="mt-8">
                     <Heading classStyle={"text-center"} text={"Save Data"} />
@@ -98,22 +80,13 @@ const Assignment = () => {
                 </div>
                 <div className="mt-8 max-w-[400px] mx-auto">
                     <Heading classStyle={"text-center"} text={"Search Input"} />
-                    <input
-                        value={searchTerm}
-                        onChange={handleSearch}
-                        className="outline-none p-2 mt-4 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto"
-                        type="search"
-                        placeholder="Search"
+                    <input value={searchTerm} onChange={handleSearch} className="outline-none p-2 mt-4 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto" type="search" placeholder="Search"
                     />
                     {searchTerm && filterUsers.length > 0 && (
-                        <p className="text-center text-xl text-green-600">
-                            "{searchTerm}" found in the list!
-                        </p>
+                        <p className="text-center text-xl text-green-600">"{searchTerm}" found in the list!</p>
                     )}
                     {searchTerm && filterUsers.length === 0 && (
-                        <p className="text-center text-xl text-red-600">
-                            "{searchTerm}" is not in the list.
-                        </p>
+                        <p className="text-center text-xl text-red-600">"{searchTerm}" is not in the list.</p>
                     )}
                 </div>
             </div>
