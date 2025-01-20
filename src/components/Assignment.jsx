@@ -35,7 +35,7 @@ const Assignment = () => {
     );
 
     return (
-        <div className="bg-gray-100 py-12">
+        <div className="bg-gray-100 py-12 h-screen">
             <div className="container mx-auto">
                 <Heading classStyle={"text-center mt-8"} text={"Form"} />
                 <form
