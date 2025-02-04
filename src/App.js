@@ -1,10 +1,12 @@
 import './App.css';
 import Assignment from './components/Assignment';
+import LocalHostTask from './components/LocalHostTask';
 
 function App() {
   return (
     <>
-      <Assignment/>
+      <LocalHostTask/>
+      {/* <Assignment/> */}
     </>
   );
 }

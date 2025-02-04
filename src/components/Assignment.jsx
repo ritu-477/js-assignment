@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import TableRow from './TableRow'
 import Heading from "../common/Heading";
@@ -39,30 +40,30 @@ const Assignment = () => {
                     {/* Submit Button */}
                     <button type='submit' className='bg-blue-400 mt-3 px-4 py-2 rounded-lg text-white'>Submit</button>
                 </form>
-                    <div className='mt-8 max-w-[400px] mx-auto'>
-                        <Heading classStyle={"text-center mb-5"} text={"Search Input"} />
-                        <input type="text" placeholder='Search first name from list' className='outline-none p-2 mt-4 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto"' value={query} onChange={(e) => setQuery(e.target.value)} />
-                    </div>
-                    <Heading classStyle={"text-center mt-8"} text={"Save Data"} />
-                    <div className='flex flex-col gap-6 max-w-[400px] w-full mx-auto mt-5'>
-                        <table className='min-w-full border-collapse text-center mx-auto'>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
+                <div className='mt-8 max-w-[400px] mx-auto'>
+                    <Heading classStyle={"text-center mb-5"} text={"Search Input"} />
+                    <input type="text" placeholder='Search first name from list' className='outline-none p-2 mt-4 border border-black rounded-lg text-gray-500 placeholder:text-gray-500 max-w-[400px] w-full mx-auto"' value={query} onChange={(e) => setQuery(e.target.value)} />
+                </div>
+                <Heading classStyle={"text-center mt-8"} text={"Save Data"} />
+                <div className='flex flex-col gap-6 max-w-[400px] w-full mx-auto mt-5'>
+                    <table className='min-w-full border-collapse text-center mx-auto'>
+                        <thead>
+                            <tr>
+                                <th>#</th>
                                 <th className='sm:px-5 px-2 text-nowrap'>First Name</th>
                                 <th className='sm:px-5 px-2 text-nowrap'>Last Name</th>
                                 <th className='sm:px-5 px-2 text-nowrap'>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {studentData.filter(doesObjectContain).map(function (student, index) {
-                                    return <TableRow key={index} index={index} student={student} />
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {studentData.filter(doesObjectContain).map(function (student, index) {
+                                return <TableRow key={index} index={index} student={student} />
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
     )
 }
 
